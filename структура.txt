@@ -1,14 +1,12 @@
-PS D:\redage_v3-main> # ????????? ??? ????????????? ? client_packages
->> Write-Host "`n=== ????????? CLIENT_PACKAGES ===" -ForegroundColor Magenta
->>
->> Get-ChildItem -Path "client_packages" -Recurse | Where-Object { $_.PSIsContainer } | ForEach-Object {
->>     $depth = ($_.FullName -split '\\').Length - 2
->>     $indent = "  " * $depth
->>     $fileCount = (Get-ChildItem $_.FullName -File -ErrorAction SilentlyContinue).Count
->>     Write-Host "$indent?? $($_.Name) ($fileCount ??????)" -ForegroundColor Cyan
->> }
+=== ФИНАЛЬНАЯ СТРУКТУРА ===
 
-=== СТРУКТУРА CLIENT_PACKAGES ===
+📁 SERVER_PACKAGES:
+    📁 core (0 файлов)
+    📁 jobs (0 файлов)
+    📁 systems (0 файлов)
+    📁 utils (0 файлов)
+
+📁 CLIENT_PACKAGES:
     📁 game (0 файлов)
     📁 game_resources (0 файлов)
     📁 hud (0 файлов)
@@ -459,85 +457,22 @@ PS D:\redage_v3-main> # ????????? ??? ????????????? ? client_packages
                 📁 images (1 файлов)
               📁 fonts (4 файлов)
               📁 img (1 файлов)
-PS D:\redage_v3-main>PS D:\redage_v3-main> # fix_server_paths.ps1
->>
->> Write-Host "=== ????????? ????? ??????? ===" -ForegroundColor Magenta
->>
->> # 1. ????????? ? ????????? server.cfg
->> if (Test-Path "server.cfg") {
->>     $serverCfg = Get-Content "server.cfg" -Raw
->>
->>     # ????????? ???? ??? ?????????? ???????
->>     $updatedCfg = $serverCfg -replace "client_packages", "client_packages" `
->>                            -replace "packages", "server_packages"
->>
->>     if ($serverCfg -ne $updatedCfg) {
->>         Set-Content -Path "server.cfg" -Value $updatedCfg
->>         Write-Host "? ???????? server.cfg" -ForegroundColor Green
->>     }
->> }
->>
->> # 2. ???? ????????? ????? ? packages - ?????????? ??
->> if (Test-Path "packages" -and (Get-ChildItem "packages" -Recurse -File).Count -gt 0) {
->>     Write-Host "`n?? ?????????? ????????? ????? ?? packages..." -ForegroundColor Yellow
->>
->>     # ??????? ????????? ????? ?????????
->>     Get-ChildItem -Path "packages" -Recurse -File | ForEach-Object {
->>         $relativePath = $_.FullName.Replace((Get-Location).Path + "\packages\", "")
->>         $targetPath = "server_packages\$relativePath"
->>         $targetDir = Split-Path $targetPath -Parent
->>
->>         if (!(Test-Path $targetDir)) {
->>             New-Item -ItemType Directory -Path $targetDir -Force
->>         }
->>
->>         Move-Item -Path $_.FullName -Destination $targetPath -Force -ErrorAction SilentlyContinue
->>         Write-Host "  ?????????: $relativePath" -ForegroundColor Green
->>     }
->> }
->>
->> # 3. ??????? ???????? index.js ???? ??? ???
->> if (!(Test-Path "server_packages\core\index.js") -and (Test-Path "server_packages\index.js")) {
->>     Move-Item -Path "server_packages\index.js" -Destination "server_packages\core\index.js" -Force
->>     Write-Host "? index.js ????????? ? server_packages/core/" -ForegroundColor Green
->> }
->>
->> Write-Host "`n?? ????????? ????? ?????????!" -ForegroundColor Magenta
-=== НАСТРОЙКА ПУТЕЙ СЕРВЕРА ===
-Test-Path : A parameter cannot be found that matches parameter name 'and'.
-At line:20 char:26
-+ if (Test-Path "packages" -and (Get-ChildItem "packages" -Recurse -Fil ...
-+                          ~~~~
-    + CategoryInfo          : InvalidArgument: (:) [Test-Path], ParameterBindingException
-    + FullyQualifiedErrorId : NamedParameterNotFound,Microsoft.PowerShell.Commands.TestPathCommand
+      📁 bank (0 файлов)
+      📁 business (0 файлов)
+      📁 carshop (0 файлов)
+      📁 clothes (0 файлов)
+      📁 dmv (0 файлов)
+      📁 faction (0 файлов)
+      📁 gas (0 файлов)
+      📁 housing (0 файлов)
+      📁 inventory (0 файлов)
+      📁 job (0 файлов)
+      📁 shop (0 файлов)
+      📁 tuning (0 файлов)
+      📁 weapons (0 файлов)
 
-
-🎯 Настройка путей завершена!
+📊 СТАТИСТИКА:
+Client files: 1466
+Server files: 0
+Shared files: 1
 PS D:\redage_v3-main>
-📁 СОДЕРЖИМОЕ PACKAGES:
-Папка packages содержит 0 JS файлов
-=== КОНФИГУРАЦИЯ SERVER.CFG ===
-Содержимое server.cfg:
-  bind "0.0.0.0"
-  port 22005
-  hostname "RedAge RP Server"
-  maxplayers 1000
-  stream_distance 500
-  announce false
-  gamemode "freeroam"
-  language "en"
-  allow_cef_debugging true
-  enable_http_security false
-
-  plugins {
-    "csharp"
-  }
-
-  resources {
-    "freeroam"
-  }
-
-  mysql_host "127.0.0.1"
-  mysql_user "root"
-  mysql_pass "root123"
-  mysql_db "ra3_main"
