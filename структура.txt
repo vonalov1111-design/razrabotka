@@ -2998,3 +2998,148 @@
                 traindat.js
 
 PS D:\redage_v3-main>
+PS D:\redage_v3-main> # ?????? ????? ?????? ? ?? ?????????????
+>> Get-ChildItem -Recurse -File | Group-Object Extension | Sort-Object Count -Descending | Select-Object Name, Count
+
+Name            Count
+----            -----
+.js             15575
+.ts              3513
+.svg             2180
+.json            2034
+.md              1565
+.map             1215
+                 1169
+.png              929
+.cs               564
+.svelte           552
+.woff             446
+.ttf              433
+.dll              412
+.eot              406
+.woff2            261
+.yml              229
+.rpf              202
+.jpg              160
+.eslintrc         120
+.css              120
+.mjs              101
+.nycrc            100
+.sass              94
+.cmd               79
+.ps1               79
+.editorconfig      64
+.html              61
+.npmignore         55
+.txt               48
+.mts               48
+.cts               39
+.jst               29
+.xml               25
+.cjs               24
+.scss              22
+.dat               21
+.coffee            19
+.less              18
+.hh                18
+.cc                17
+.gitattributes     15
+.cache             14
+.jshintrc          14
+.sh                12
+.lock               9
+.gitignore          8
+.pdb                8
+.BSD                7
+.babelrc            7
+.markdown           7
+.vsidx              6
+.gitkeep            6
+.iml                6
+.sql                5
+.def                5
+.flow               5
+.1                  5
+.yaml               4
+.DS_Store           4
+.eslintignore       4
+.h                  4
+.targets            4
+.exe                4
+.opts               4
+.csproj             3
+.tsbuildinfo        3
+.webm               3
+.sqlite             3
+.props              3
+.gypi               3
+.gyp                3
+.tt                 3
+.nvmrc              2
+.patch              2
+.conf               2
+.bnf                2
+.jscsrc             2
+.otf                2
+.yarnrc             2
+.ytd                2
+.ls                 2
+.gif                2
+.py                 1
+.bak                1
+.gz                 1
+.prettierrc         1
+.jsx                1
+.nix                1
+.tm_properties      1
+.APACHE2            1
+.sample             1
+.jison              1
+.swf                1
+.c                  1
+.MIT                1
+.snap               1
+.listcache          1
+.wasm               1
+.bin                1
+.mov                1
+.DOCS               1
+.CopyComplete       1
+.version            1
+.sln                1
+.node               1
+.gfx                1
+.ejs                1
+.bowerrc            1
+.auto-changelog     1
+.prettierignore     1
+.el                 1
+.cfg                1
+.in                 1
+.gitmodules         1
+.jar                1
+.targ               1
+
+
+PS D:\redage_v3-main>
+PS D:\redage_v3-main> # ????? ????? ??????? ?????
+>> Get-ChildItem -Recurse -File | Sort-Object Length -Descending | Select-Object Name, @{Name="Size(MB)";Expression={[math]::Round($_.Length/1MB,2)}}, Directory -First 10
+
+Name    Size(MB) Directory
+----    -------- ---------
+dlc.rpf    169,7 D:\redage_v3-main\client_packages\game_resources\dlcpacks\redage_v3-dlcpacks\clothespack46
+dlc.rpf   103,57 D:\redage_v3-main\client_packages\game_resources\dlcpacks\redage_v3-dlcpacks\apriora
+dlc.rpf    81,03 D:\redage_v3-main\client_packages\game_resources\dlcpacks\redage_v3-dlcpacks\clothespack44
+dlc.rpf    79,91 D:\redage_v3-main\client_packages\game_resources\dlcpacks\redage_v3-dlcpacks\clothespack33
+dlc.rpf    76,89 D:\redage_v3-main\client_packages\game_resources\dlcpacks\redage_v3-dlcpacks\qnx_fib_v3
+dlc.rpf    72,17 D:\redage_v3-main\client_packages\game_resources\dlcpacks\redage_v3-dlcpacks\int_prison
+dlc.rpf    68,96 D:\redage_v3-main\client_packages\game_resources\dlcpacks\redage_v3-dlcpacks\clothespack39
+dlc.rpf    67,23 D:\redage_v3-main\client_packages\game_resources\dlcpacks\redage_v3-dlcpacks\clothespack36
+dlc.rpf    66,77 D:\redage_v3-main\client_packages\game_resources\dlcpacks\redage_v3-dlcpacks\clothespack25
+dlc.rpf    66,72 D:\redage_v3-main\client_packages\game_resources\dlcpacks\redage_v3-dlcpacks\veh_mazdarx7
+
+
+PS D:\redage_v3-main>
+
+
+
